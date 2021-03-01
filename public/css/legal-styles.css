@@ -1,0 +1,45 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #171c29;
+}
+
+.pagetitle {
+  margin: 0 auto;
+  color: white;
+  border-radius: 20px;
+  background-color: rgba(34, 48, 80, 0.75);
+  width: fit-content;
+  padding: 10px;
+  font-size: 50px;
+  letter-spacing: 1mm;
+  text-align: center;
+}
+
+.titleSeperater {
+  padding-top: 20px;
+}
+
+.lurl {
+  background-color: rgba(34, 48, 80, 0.75);
+  width: 65%;
+  text-align: left;
+  margin: 0 auto;
+  padding-top: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+  border-radius: 20px;
+  color: white;
+}
+
+/* Removes text box outline */
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: none;
+}
+
+::selection {
+  background: none;
+}

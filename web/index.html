@@ -5,7 +5,7 @@
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="styles.css">
+      <link rel="stylesheet" href="index-styles.css">
 
       <!--Fonts-->
       <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -60,7 +60,7 @@
             <div class="errorbox" id="errorbox">
                <div class="validerror">Invalid URL! Please enter a valid URL.</div>
             </div>
-            <button onclick="lurlsubmit()" id="urlSubmit">Submit</button>
+            <button onclick="lurlsubmit()" id="urlSubmit" class="btn">Submit</button>
          </div>
       </div>
       <div class="output" id="output">
@@ -71,7 +71,7 @@
             <div class="urlinput">
                <div class="outputBox" id="Surl">Error</div>
             </div>
-            <button onclick="onCopy()" id="urlCopy" class="btn" data-clipboard-target='#Surl'>Copy</button>
+            <button onclick="onCopy()" id="urlCopy" class="cbtn" data-clipboard-target='#Surl'>Copy</button>
          </div>
       </div>
 
@@ -94,7 +94,7 @@
       }
 
       // setting up new copy paste tool
-      new ClipboardJS('.btn');
+      new ClipboardJS('.cbtn');
    
    </script>
 

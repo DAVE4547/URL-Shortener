@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+     
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="styles.css">
+
+      <!--Fonts-->
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+      <!--3rd part tools-->
+      <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+     
+      <title>Home Page</title>
+
+      <script type="text/javascript">
+         const isAbsoluteUrl = url => /^[a-z][a-z0-9+.-]*:/.test(url);
+
+         function lurlsubmit() {
+            var str = document.getElementById('Lurl').value;
+            var valid = isAbsoluteUrl(str)
+            if (isAbsoluteUrl(str)) {
+               console.log('valid')
+
+               document.getElementById('input').style.display = 'none';
+               document.getElementById('output').style.display = 'block';
+               document.getElementById('Surl').innerHTML = 'https://google.com/';
+
+               axios({
+                  method: 'post',
+                  url: 'http://localhost:3000/',
+                  data: {
+                     url: str
+                  }
+               });
+
+            } else {
+               console.error(str + ' Is an invalid string')
+               document.getElementById('errorbox').style.display = 'block';
+            }
+         }
+
+      </script>
+
+   </head>
+   <body>
+
+      <div class="input" id="input">
+         <h1 class="pagetitle">URL Shortener Test Project</h1>
+         <div class="titleSeperater"></div>
+         <div class="lurl">
+            <label for="Lurl">Your URL:</label><br>
+            <div class="urlinput">
+               <input name="LurlInput" type="url" id="Lurl" placeholder="https://example.com"><br>
+            </div>
+            <div class="errorbox" id="errorbox">
+               <div class="validerror">Invalid URL! Please enter a valid URL.</div>
+            </div>
+            <button onclick="lurlsubmit()" id="urlSubmit">Submit</button>
+         </div>
+      </div>
+      <div class="output" id="output">
+         <h1 class="pagetitle">URL Shortener Test Project</h1>
+         <div class="titleSeperater"></div>
+         <div class="lurl">
+            <label for="Lurl">Your URL:</label><br>
+            <div class="urlinput">
+               <div class="outputBox" id="Surl">Error</div>
+            </div>
+            <button onclick="onCopy()" id="urlCopy" class="btn" data-clipboard-target='#Surl'>Copy</button>
+         </div>
+      </div>
+
+   </body>
+
+   <!--\/ Main element script \/-->
+
+   <script type="text/javascript">
+
+      const input = document.querySelector('input')
+
+      input.addEventListener("keyup", function(event) {
+         if (event.key === "Enter") {
+            lurlsubmit()
+         }
+      });
+
+      function onCopy() {
+         document.getElementById('urlCopy').innerHTML = 'Copied!'
+      }
+
+      // setting up new copy paste tool
+      new ClipboardJS('.btn');
+   
+   </script>
+
+</html>
+
+<!--Continue by exploring html requests in html-->

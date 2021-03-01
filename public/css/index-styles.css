@@ -126,6 +126,20 @@ button[id="urlSubmit"]:hover {
   display: none;
 }
 
+.footer {
+  
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  
+  background-color: rgba(34, 48, 80, 0.75);
+  color: white;
+  text-align: center;
+
+  display: inline-block;
+}
+
 /* Removes text box outline */
 input:focus,
 textarea:focus,

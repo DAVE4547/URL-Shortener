@@ -32,6 +32,29 @@ body {
   color: white;
 }
 
+.lurl p {
+  color: rgb(221, 221, 221);
+}
+
+.subtitle {
+  letter-spacing: 2px;
+  line-height: 15px;
+}
+
+.footer {
+  
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  
+  background-color: rgba(34, 48, 80, 0.75);
+  color: white;
+  text-align: center;
+
+  display: inline-block;
+}
+
 /* Removes text box outline */
 input:focus,
 textarea:focus,

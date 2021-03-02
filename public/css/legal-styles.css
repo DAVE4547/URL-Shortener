@@ -15,8 +15,33 @@ body {
   text-align: center;
 }
 
-.titleSeperator {
-  padding-top: 20px;
+.titlespacer {
+  position: relative;
+  margin: 0 auto;
+  height: 20px;
+  width: 65%;
+  right: 20px;
+}
+
+/* Reference not for psoition */
+.homebutton {
+  appearance: button;
+  text-decoration: none;
+  text-align: center;
+
+  display: inline;
+  position: absolute;
+  margin: 0 auto;
+  height: 30px;
+  bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  border-width: 0px;
+  background-color: rgb(255, 91, 104);
+  width: 100px;
+  color: white;
+  cursor: pointer;
 }
 
 .lurl {

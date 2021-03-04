@@ -149,5 +149,5 @@ button:focus {
 }
 
 ::selection {
-  background: none;
+  background-color: rgba(34, 48, 80, 0.75);
 }

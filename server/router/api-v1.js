@@ -9,7 +9,7 @@ var api = express.Router();
 const shorts = require("./../models/shorts");
 
 // API V1 //
-api.post("/new_short", body("url").isURL().withMessage('invalid URL'), (req, res) => {
+api.post("/new_short", body("url").isURL({ protocols: ['http', 'https'] }).withMessage('invalid URL'), (req, res) => {
   
     try {
         validationResult(req).throw()

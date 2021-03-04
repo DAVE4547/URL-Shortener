@@ -30,17 +30,25 @@
             if (isAbsoluteUrl(str)) {
                console.log('valid')
 
-               document.getElementById('input').style.display = 'none';
-               document.getElementById('output').style.display = 'block';
-               document.getElementById('Surl').innerHTML = 'https://google.com/';
+               async function runPost(){
+                  await axios({
+                     method: 'post',
+                     url: 'http://localhost:3000/api/v1/new_short',
+                     data: {
+                        url: str
+                     }
+                  })
+                  .then(function (response) {
+                     window.shortURL = response.data.url
+                     console.log(200)
+                  })
 
-               axios({
-                  method: 'post',
-                  url: 'http://localhost:3000/',
-                  data: {
-                     url: str
-                  }
-               });
+                  document.getElementById('input').style.display = 'none';
+                  document.getElementById('output').style.display = 'block';
+                  document.getElementById('Surl').innerHTML = window.shortURL;
+               }
+
+               runPost()
 
             } else {
                console.error(str + ' Is an invalid string')

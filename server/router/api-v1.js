@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const nanoid = require("./../utils/id");
 const { body, validationResult } = require("express-validator");
+const baseShortURL = process.env.SHORT_URL || 'localhost'
 require("dotenv").config();
 
 var api = express.Router();
@@ -23,7 +24,7 @@ api.post("/new_short", body("url").isURL({ protocols: ['http', 'https'] }).withM
         newShorts.save();
 
         res.status("201")
-            .send({ url: process.env.SHORT_URL + id })
+            .send({ url: baseShortURL + id })
     } catch (err) {
         res.sendStatus(400).end()
     }

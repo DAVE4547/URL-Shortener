@@ -1,7 +1,7 @@
-name: CI - Master
-  on:
-    push:
-      branches: [ production ]
+name: "PM2 Deploy"
+on:
+  push:
+    branches: [ production ]
 
 jobs:
   deploy:
@@ -14,26 +14,25 @@ jobs:
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ./deploy.key
-          sudo chmod 600 ./deploy.key
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy.key
+          sudo chmod 600 ~/.ssh/deploy.key
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
         shell: bash
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
 
-      # (optional - only needed if your config uses environment variables)
-      - name: Create env file
-        run: |
-          touch .env
-          echo DB_URL=${{ secrets.DB_URL }} >> .env
-          echo SHORT_URL=${{ secrets.SHORT_URL }} >> .env
-          echo PORT=${{ secrets.PORT }}
-
       - name: Install PM2
-        run: npm i pm2
+        run: sudo npm i pm2 -g
 
       - name: Deploy
-        run: env $(cat .env | grep -v \"#\" | xargs) pm2 deploy ecosystem.config.js production
+        run: |
+          pm2 deploy ecosystem.config.js production
+          env
+        env: 
+          S_DB_URL: ${{ secrets.DB_URL }}
+          S_SHORT_URL: ${{ secrets.SHORT_URL }}
+          S_PORT: ${{ secrets.PORT }}
+          S_HOST: ${{ secrets.HOST }}
         # Or alternately, put this deploy script in your package.json's scripts and run it using yarn/npm:
         # run: yarn deploy

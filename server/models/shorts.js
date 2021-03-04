@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 require('mongoose-type-url')
 
 const shortsSchema = new mongoose.Schema({
-    long: mongoose.SchemaType.Url,
+    long: mongoose.SchemaTypes.Url,
     shortID: String,
     date: { type: Date, default: Date.now() },
     review: {

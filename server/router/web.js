@@ -11,14 +11,18 @@ web.get('/legal', (req, res) => {
     res.sendFile('legal.html', { root: './public' })
 })
 web.get('/404', (req, res) => {
-    res.status(404)
+    res.send('Page not found!')
 })
 
 const shorts = require('./../models/shorts')
 
 web.get('/:shortID', async (req, res) => {
-    var doc = await shorts.findOne({ shortID: req.params.shortID }).exec()
-    res.redirect(doc.long)
+    try {
+        var doc = await shorts.findOne({ shortID: req.params.shortID }).exec()
+        res.redirect(doc.long)
+    } catch(err) {
+        res.redirect('/404')
+    }
 })
 
 module.exports = web

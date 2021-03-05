@@ -15,16 +15,24 @@ api.post("/new_short", body("url").isURL({ protocols: ['http', 'https'] }).withM
     try {
         validationResult(req).throw()
 
-        const id = nanoid();
+        const id = nanoid()
+        const long = req.body.url
+
+        if (long == 'https://example.com' || long == 'http://example.com') {
+            return res
+            .status(201)
+            .send({ url: baseShortURL + 'example'})
+        }
 
         const newShorts = new shorts({
-            long: req.body.url,
+            long: long,
             shortID: id,
         });
         newShorts.save();
 
-        res.status("201")
-            .send({ url: baseShortURL + id })
+        return res
+        .status(201)
+        .send({ url: baseShortURL + id })
     } catch (err) {
         res.sendStatus(400).end()
     }

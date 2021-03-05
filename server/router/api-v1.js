@@ -18,7 +18,7 @@ api.post("/new_short", body("url").isURL({ protocols: ['http', 'https'] }).withM
         const id = nanoid()
         const long = req.body.url
 
-        if (long == 'https://example.com' || long == 'http://example.com') {
+        if (long == 'https://example.com' || long == 'http://example.com' || long == 'example.com') {
             return res
             .status(201)
             .send({ url: baseShortURL + 'example'})

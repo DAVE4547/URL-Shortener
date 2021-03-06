@@ -19,6 +19,7 @@ const shorts = require('./../models/shorts')
 web.get('/:shortID', async (req, res) => {
     try {
         var doc = await shorts.findOne({ shortID: req.params.shortID }).exec()
+        await shorts.updateOne({shortID: req.params.shortID}, {$inc: {clicks: 1 }}).exec()
         res.redirect(doc.long)
     } catch(err) {
         res.redirect('/404')

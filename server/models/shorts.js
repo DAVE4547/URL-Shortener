@@ -4,6 +4,7 @@ require('mongoose-type-url')
 const shortsSchema = new mongoose.Schema({
     long: { type: mongoose.SchemaTypes.Url, required: true },
     shortID: { type: String, required: true, unique: true},
+    clicks: { type: Number, default: 0 },
     date: { type: Date, default: Date.now() },
     review: {
         reviewed: { type: Boolean, default: false },
